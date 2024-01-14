@@ -8,6 +8,6 @@ timezone = 'Pacific/Central'
 CELERYBEAT_SCHEDULE = {
     'parse_weather_daily': {
         'task': 'celery_task.add',
-        'schedule': crontab(hour='15', minute='26')
+        'schedule': crontab(hour='15', minute='30')
     }
 }
