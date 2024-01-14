@@ -9,7 +9,7 @@ from celery.schedules import crontab
 app = Celery('celery_task')
 app.config_from_object('celery_config')
 
-@app.celery_task
+@app.task
 def add(x,y):
     return x + y
 
