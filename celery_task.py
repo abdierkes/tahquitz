@@ -3,8 +3,11 @@ import datetime
 from celery import Celery
 from celery.schedules import crontab
 
-app = Celery('celery_task',
-             broker='redis://localhost:6379/0')
+# app = Celery('celery_task',
+#              broker='redis://localhost:6379/0')
+
+app = Celery('celery_task')
+app.config_from_object('celery_config')
 
 @app.celery_task
 def add(x,y):
