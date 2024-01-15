@@ -5,3 +5,5 @@ packaging~=23.0
 pyparsing~=3.0.9
 psycopg2~=2.9.9
 celery~=5.3.6
+requests~=2.31.0
+#type this in cmd line; python -c "import requests; print(requests.__version__)"
