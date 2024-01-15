@@ -13,3 +13,6 @@ app.config_from_object('celery_config')
 def add(x,y):
     return x + y
 
+
+
+
