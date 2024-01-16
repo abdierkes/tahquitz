@@ -9,6 +9,8 @@ from pydantic import BaseModel
 import re
 import logging
 
+load_dotenv()
+
 class weather_hour_data(BaseModel):
     date: str
     hour: str
@@ -87,11 +89,15 @@ for match in hour_data_matches:
     model_dict = weather_hour_data_model.model_dump()
 
     insert_query = '''
-                           INSERT INTO tahquitz_weather (date, hour, temperature, feels_like, dew, precip>                                                     precip_prob, snow, snow_depth, precip_type, wind>                                                     wind_speed, wind_direction, pressure, visibility>
-                                                         solar_radiation, uv_index, severe_risk)
-                           VALUES(%(date)s, %(hour)s, %(temperature)s, %(feels_like)s, %(dew)s, %(precipi>                             %(precip_prob)s, %(snow)s, %(snow_depth)s, %(precip_type)s, %(wind_gust)>                             %(wind_speed)s, %(wind_direction)s, %(pressure)s, %(visibility)s, %(clou>
-                                 %(solar_radiation)s, %(uv_index)s, %(severe_risk)s)
-                           '''
+                   INSERT INTO tahquitz_weather (date, hour, temperature, feels_like, dew, precipitation,
+                                                 precip_prob, snow, snow_depth, precip_type, wind_gust,
+                                                 wind_speed, wind_direction, pressure, visibility, cloud_cover,
+                                                 solar_radiation, uv_index, severe_risk)
+                   VALUES(%(date)s, %(hour)s, %(temperature)s, %(feels_like)s, %(dew)s, %(precipitation)s,
+                         %(precip_prob)s, %(snow)s, %(snow_depth)s, %(precip_type)s, %(wind_gust)s,
+                         %(wind_speed)s, %(wind_direction)s, %(pressure)s, %(visibility)s, %(cloud_cover)s,
+                         %(solar_radiation)s, %(uv_index)s, %(severe_risk)s)
+                   '''
 
     logger = logging.getLogger(__name__)
 
