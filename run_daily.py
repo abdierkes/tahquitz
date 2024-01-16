@@ -7,7 +7,7 @@ import requests
 from bs4 import BeautifulSoup
 from pydantic import BaseModel
 import re
-
+import logging
 
 class weather_hour_data(BaseModel):
     date: str
@@ -93,11 +93,14 @@ for match in hour_data_matches:
                                  %(solar_radiation)s, %(uv_index)s, %(severe_risk)s)
                            '''
 
+    logger = logging.getLogger(__name__)
+
     try:
         conn = psycopg2.connect(**db_params)
         cur = conn.cursor(cursor_factory=DictCursor)
         cur.execute(insert_query, model_dict)
         conn.commit()
+        print('committed')
 
     except psycopg2.Error as e:
         logger.error(f"PostgreSQL error: {e}")
