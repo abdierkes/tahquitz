@@ -100,9 +100,9 @@ for match in hour_data_matches:
                    '''
 
     logger = logging.getLogger(__name__)
+    conn = psycopg2.connect(**db_params)
 
     try:
-        conn = psycopg2.connect(**db_params)
         cur = conn.cursor(cursor_factory=DictCursor)
         cur.execute(insert_query, model_dict)
         conn.commit()
