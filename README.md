@@ -2,7 +2,7 @@
 ## Taking a look at weather patterns at one of the home crags. Tahquitz sports 4-8 pitch lines of splitter crack and sticky slab climbing. Currently, I am collecting data from the previous day using a cron job to automate running the py script.
 
 To do:<br>
--git clone <ssh-key> <br>
+-git clone ssh-key <br>
 -git checkout -b new_branch_name <br>
 -pip install -r requirements.txt <br>
 -crontab -e <br>
