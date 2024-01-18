@@ -6,8 +6,10 @@ from dotenv import load_dotenv
 import requests
 from bs4 import BeautifulSoup
 from pydantic import BaseModel
+from datetime import date
 import re
 import logging
+
 
 load_dotenv()
 
@@ -106,7 +108,6 @@ for match in hour_data_matches:
         cur = conn.cursor(cursor_factory=DictCursor)
         cur.execute(insert_query, model_dict)
         conn.commit()
-        print('committed')
 
     except psycopg2.Error as e:
         logger.error(f"PostgreSQL error: {e}")
@@ -114,3 +115,5 @@ for match in hour_data_matches:
     finally:
         if conn:
             conn.close()
+
+print(f'Parsed & Uploaded on {date.today()}')
