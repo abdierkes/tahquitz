@@ -21,8 +21,8 @@ db_params = {"user": os.getenv("USERNAME"),
              "port": os.getenv("PORT"),
              "dbname": os.getenv("DBNAME")
              }
-yesterday_url ='https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/33.760962%2C%20-116.683304/2024-01-18?unitGroup=metric&key=ASWC8N4FGJQWAM7MH5DF7JEWU&contentType=json'
-#yesterday_url='https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/33.760962%2C%20-116.683304/yesterday?unitGroup=metric&key=ASWC8N4FGJQWAM7MH5DF7JEWU&contentType=json'
+#yesterday_url ='https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/33.760962%2C%20-116.683304/2024-01-18?unitGroup=metric&key=ASWC8N4FGJQWAM7MH5DF7JEWU&contentType=json'
+yesterday_url='https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/33.760962%2C%20-116.683304/yesterday?unitGroup=metric&key=ASWC8N4FGJQWAM7MH5DF7JEWU&contentType=json'
 tah_yes = requests.get(yesterday_url)
 tah_data = str(BeautifulSoup(tah_yes.text, 'html.parser'))
 date_matches = date_match.findall(tah_data)
@@ -33,10 +33,12 @@ for match in hour_data_matches:
 
     # manually add date in & call model for data validation
     group_dict['date'] = str(date_matches[0])
+
     weather_hour_data_model = weather_hour_data(**group_dict)
 
     # convert model into dictionary for postgresql upload
     model_dict = weather_hour_data_model.model_dump()
+
 
     insert_query = '''
                    INSERT INTO tahquitz_weather (date, hour, temperature, feels_like, dew, precipitation,
