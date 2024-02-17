@@ -21,8 +21,9 @@ db_params = {"user": os.getenv("USERNAME"),
              "port": os.getenv("PORT"),
              "dbname": os.getenv("DBNAME")
              }
-#yesterday_url ='https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/33.760962%2C%20-116.683304/2024-01-18?unitGroup=metric&key=ASWC8N4FGJQWAM7MH5DF7JEWU&contentType=json'
+
 yesterday_url='https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/33.760962%2C%20-116.683304/yesterday?unitGroup=metric&key=ASWC8N4FGJQWAM7MH5DF7JEWU&contentType=json'
+
 tah_yes = requests.get(yesterday_url)
 tah_data = str(BeautifulSoup(tah_yes.text, 'html.parser'))
 date_matches = date_match.findall(tah_data)

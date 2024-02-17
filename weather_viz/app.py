@@ -34,6 +34,7 @@ df_tah = pd.DataFrame(data, columns=col)
 conn.close()
 
 app = Dash(__name__)
+server = app.server
 
 app.layout = html.Div(
     children=[
@@ -67,4 +68,6 @@ def update_graph(start_date, end_date):
     return fig_tah
 
 if __name__ == "__main__":
-    app.run_server(debug=True)
+    app.run()
+    #app.run_server(host="127.0.0.1", port=8010, debug=True)
+    #app.run_server(debug=True)
